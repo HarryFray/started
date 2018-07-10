@@ -13,6 +13,13 @@ const EventSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  message: {
+    type: String,
+  },
+  otheruser: {
+    type: String,
+  },
+
 });
 
 module.exports = mongoose.model('event', EventSchema);

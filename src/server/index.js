@@ -28,19 +28,20 @@ eventsRouter.post('/clear', (req, res) => {
 })
 
 // list events
-eventsRouter.get('/', (req, res) => {
-  mongoQuery.retrieveEventsInDateRange()
+eventsRouter.get('/?from=DATE&to=DATE', (req, res) => {
+  let { from, to } = req.params;
+  mongoQuery.retrieveEventsInDateRange(from, to)
     .then(events => res.json({ events: events }))
     .catch(() => res.status(400));
 })
 
 // event summary
-eventsRouter.get('/', (req, res) => {
-  mongoQuery.sumarizeEventsInDateRange()
+eventsRouter.get('/summary?from=DATE&to=DATE&by=TIMEFRAME', (req, res) => {
+  let = { from, to, timeFrame } = req.params
+  mongoQuery.sumarizeEventsInDateRange(from, to, timeFrame)
     .then(events => res.json({ events: events }))
     .catch(() => res.status(400));
 })
-
 
 const port = 8080;
 
