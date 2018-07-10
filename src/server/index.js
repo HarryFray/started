@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const dataBase = require('../dataBase');
+
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -27,6 +30,8 @@ eventsRouter.get('/', (req, res) => res.json({ events: true }))
 
 
 
-app.listen(8080, () => {
-  console.log('API local 8080');
+const port = 8080;
+
+app.listen(port, () => {
+  console.log(`Listening on http://localhost:${port}`);
 });
