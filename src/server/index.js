@@ -16,27 +16,29 @@ app.use('/events', eventsRouter);
 // submit event
 eventsRouter.post('/', (req, res) => {
   mongoQuery.insertEvent(req.body)
-    .then(res => {
-      res.status(200)
-    })
-    .catch(err => {
-      res.status(400);
-    });
+    .then(() => res.json({ "status": "ok" }))
+    .catch(() => res.sendStatus(400));
 })
 
 // clear data
 eventsRouter.post('/clear', (req, res) => {
-  mongoQuery.deleteEvents();
+  mongoQuery.deleteEvents()
+    .then(() => res.json({ "status": "ok" }))
+    .catch(() => res.status(400));
 })
 
 // list events
 eventsRouter.get('/', (req, res) => {
-  mongoQuery.retrieveEvents();
+  mongoQuery.retrieveEventsInDateRange()
+    .then(events => res.json({ events: events }))
+    .catch(() => res.status(400));
 })
 
 // event summary
 eventsRouter.get('/', (req, res) => {
-  mongoQuery.sumarizeEvents();
+  mongoQuery.sumarizeEventsInDateRange()
+    .then(events => res.json({ events: events }))
+    .catch(() => res.status(400));
 })
 
 

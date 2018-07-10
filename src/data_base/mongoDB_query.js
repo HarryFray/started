@@ -1,20 +1,18 @@
 const Event = require('./schema/eventSchema');
 const mongoose = require('mongoose');
 
-
 module.exports.insertEvent = (event) => {
-  return new Event(event)
-    .save()
+  return new Event(event).save();
 };
 
 module.exports.deleteEvents = () => {
-  console.log('deleted events')
-}
+  return Event.remove({});
+};
 
-module.exports.retrieveEvents = () => {
-  console.log('retrive events')
-}
+module.exports.retrieveEventsInDateRange = () => {
+  return Event.find({});
+};
 
-module.exports.sumarizeEvents = () => {
-  console.log('sumarized events')
-}
+module.exports.sumarizeEventsInDateRange = () => {
+  return Event.find({});
+};
